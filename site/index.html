@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fuuz LLM Skills &mdash; Fuuz Tools</title>
+<meta name="description" content="Ten Claude skills that teach a model the Fuuz platform: data flows and their nodes, data models, JSONata expressions, GraphQL, screen design and styling, dashboards and integration connectors.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://accelerators.fuuz.com/llm-skills/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://accelerators.fuuz.com/llm-skills/">
+<meta property="og:site_name" content="Fuuz Accelerators">
+<meta property="og:title" content="Fuuz LLM Skills">
+<meta property="og:description" content="Ten Claude skills that teach a model the Fuuz platform.">
+<link rel="icon" href="assets/appicon-violet.svg">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="prose.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "Fuuz LLM Skills",
+  "url": "https://accelerators.fuuz.com/llm-skills/",
+  "description": "Ten Claude skills that teach a model the Fuuz platform \u2014 data flows, models, expressions, GraphQL, screens and integration.",
+  "codeRepository": "https://github.com/Fuuz-Platform/llm-skills",
+  "applicationCategory": "DeveloperApplication",
+  "author": {
+    "@type": "Organization",
+    "name": "Fuuz",
+    "url": "https://fuuz.com"
+  }
+}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="../"><img src="assets/logo-horizontal-on-midnight.svg" alt="Fuuz"></a>
+    <span class="section">Accelerators</span>
+    <nav>
+      <a href="#skills">The skills</a>
+      <a href="#when">When each fires</a>
+      <a href="https://github.com/Fuuz-Platform/llm-skills">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="wrap hero">
+  <p class="eyebrow">Tool &middot; Helps you build on Fuuz</p>
+  <h1>Teach A Model The <span class="accent">Platform</span></h1>
+  <p class="lede">Ten skills covering the parts of Fuuz&reg; an agent gets wrong unaided &mdash;
+    flow node configuration, model relations and triggers, JSONata, the GraphQL dialect, screen
+    element properties, and the styling rules. Installed once, they load only when the work calls
+    for them.</p>
+  <div class="ctas">
+    <a class="cta cta-primary" href="https://github.com/Fuuz-Platform/llm-skills">Get the skills</a>
+    <a class="cta cta-secondary" href="../">All accelerators</a>
+  </div>
+  <div class="chips"><span class="chip">10 skills</span><span class="chip">46 files</span><span class="chip">Claude</span></div>
+</div>
+<section id="skills">
+  <div class="wrap">
+    <p class="sec-eyebrow">What ships</p>
+    <h2>Ten Skills, One Per Part Of The <span class="accent">Platform</span></h2>
+    <p class="sec-lede">Each is a directory with a <code>SKILL.md</code> and its supporting
+      reference material.</p>
+    <div class="grid"><div class="card"><h3><code>fuuz-data-flow</code></h3><p>Design and build Fuuz data flows.</p><div class="meta">1 file</div></div><div class="card"><h3><code>fuuz-data-flow-nodes</code></h3><p>Configure data flow nodes in Fuuz.</p><div class="meta">13 files</div></div><div class="card"><h3><code>fuuz-data-model</code></h3><p>Create and configure Fuuz data models (ModelDefinition).</p><div class="meta">1 file</div></div><div class="card"><h3><code>fuuz-expressions</code></h3><p>Write JSONata expressions and JavaScript scripts for the Fuuz/MFGx platform.</p><div class="meta">6 files</div></div><div class="card"><h3><code>fuuz-graphql</code></h3><p>Write GraphQL queries and mutations for the Fuuz/MFGx platform API.</p><div class="meta">2 files</div></div><div class="card"><h3><code>fuuz-html-dashboards</code></h3><p>Build HTML/data-URI dashboards rendered in Fuuz screens via a backend flow + embedded webpage element.</p><div class="meta">10 files</div></div><div class="card"><h3><code>fuuz-integration</code></h3><p>Configure and use Fuuz integration connectors.</p><div class="meta">5 files</div></div><div class="card"><h3><code>fuuz-screen-design</code></h3><p>Design and build Fuuz/MFGx screens.</p><div class="meta">1 file</div></div><div class="card"><h3><code>fuuz-screen-elements</code></h3><p>Configure Fuuz screen elements and their properties.</p><div class="meta">6 files</div></div><div class="card"><h3><code>fuuz-screen-styling</code></h3><p>Style Fuuz/MFGx platform screens following internal design guidelines.</p><div class="meta">1 file</div></div></div>
+  </div>
+</section>
+<section id="when">
+  <div class="wrap">
+    <p class="sec-eyebrow">Triggers</p>
+    <h2>When Each One <span class="accent">Fires</span></h2>
+    <p class="sec-lede">A skill loads on the work in front of it, not on every request. These are
+      the conditions each declares.</p>
+    <div class="tablewrap">
+      <table><thead><tr><th>Skill</th><th>Loads when</th></tr></thead><tbody><tr><td><code>fuuz-data-flow</code></td><td>Use when the user needs to create data flows, understand flow structure, connect nodes, configure environments, or implement common flow patterns. For specific node configuration, use the fu</td></tr><tr><td><code>fuuz-data-flow-nodes</code></td><td>Use when the user needs to configure a specific node type, understand what nodes are available, or look up node properties. Covers all 85+ node types across 12 categories (Conditionals, Cont</td></tr><tr><td><code>fuuz-data-model</code></td><td>Use when the user needs to define models, add fields, set up relations, configure triggers, sequences, indices, or migrations in the Fuuz/MFGx platform.</td></tr><tr><td><code>fuuz-expressions</code></td><td>Use when the user needs to write transforms, validation expressions, onChange handlers, data flow transforms, or scripts. Covers both JSONata (used in screen transforms, flow transforms, val</td></tr><tr><td><code>fuuz-graphql</code></td><td>Use when the user needs to query data, create/update/delete records, use filters, pagination, ordering, aggregations, or understand the auto-generated API types.</td></tr><tr><td><code>fuuz-html-dashboards</code></td><td>Use whenever a Fuuz user asks for a &quot;dashboard&quot;, &quot;wallboard&quot;, &quot;live screen&quot;, &quot;operator screen&quot;, &quot;data visualization&quot;, &quot;3D scene&quot;, &quot;interactive widget&quot;, &quot;real-time view&quot;, or any custom HTML o</td></tr><tr><td><code>fuuz-integration</code></td><td>Use when the user needs to connect to external systems, configure REST APIs, databases, FTP, Plex, or other third-party services using the $integrate() function or integration nodes in data </td></tr><tr><td><code>fuuz-screen-design</code></td><td>Use when the user needs to understand screen structure (flat node map, parent/child relationships, element names), transforms and context bindings, action steps, query building for forms and</td></tr><tr><td><code>fuuz-screen-elements</code></td><td>Use when the user needs to know what props an element supports, which elements are available, element flags and shared field sets, or how to configure specific element types (inputs, layout,</td></tr><tr><td><code>fuuz-screen-styling</code></td><td>Use when the user needs to build dashboards, admin panels, or home pages with correct colors, spacing, card patterns, typography, naming conventions, and brand elements. Covers the three-zon</td></tr></tbody></table>
+    </div>
+  </div>
+</section>
+<section id="install">
+  <div class="wrap">
+    <p class="sec-eyebrow">Using them</p>
+    <h2>Installed Once, Then Out Of The <span class="accent">Way</span></h2>
+    <div class="prose">
+      <p>Clone the repository and point your agent at it, or install the skills through the Fuuz
+        VS Code extension, which carries its own installer for them.</p>
+      <p>These are <strong>not</strong> an accelerator. Nothing here installs into a Fuuz tenant or
+        runs against one &mdash; they are reference material that makes an agent competent at
+        authoring platform artifacts, and they are only as current as the platform behaviour they
+        were written against.</p>
+    </div>
+    <div class="ctas">
+      <a class="cta cta-secondary" href="../fuuz-vscode-extension/">Fuuz for VS Code</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <p>Fuuz&reg; is an Enterprise Industrial Intelligence Platform.
+      <a href="https://accelerators.fuuz.com/">All accelerators</a> &middot;
+      <a href="https://github.com/Fuuz-Platform/llm-skills">Source</a> &middot;
+      <a href="https://fuuz.com">fuuz.com</a></p>
+  </div>
+</footer>
+</body>
+</html>
