@@ -1,6 +1,6 @@
 ---
 name: fuuz-html-dashboards
-description: Build HTML/data-URI dashboards rendered in Fuuz screens via a backend flow + embedded webpage element. Use whenever a Fuuz user asks for a "dashboard", "wallboard", "live screen", "operator screen", "data visualization", "3D scene", "interactive widget", "real-time view", or any custom HTML output for a Fuuz screen. Also use when a user asks how to embed Three.js, D3, Chart.js, ECharts, Cytoscape, Leaflet, Tabulator, Plotly, Mermaid, Transformers.js, FusionCharts, or any other web library in a Fuuz screen, OR asks which library to use for a manufacturing visualization (OEE gauge, Pareto, material genealogy, plant floor map, traceability tree, sankey, etc.). Covers the full pipeline — flow design, GraphQL queries, JSONata bundling, saved-script HTML building, percent-encoded data URIs, theming, timezone, smooth refresh, screen embedding, and library selection. Always trigger this skill for dashboard work, even if the user just says "make me a screen that shows X."
+description: Build HTML/data-URI dashboards rendered in Fuuz screens via a backend flow + embedded webpage element. Use whenever a Fuuz user asks for a "dashboard", "wallboard", "live screen", "operator screen", "data visualization", "3D scene", "interactive widget", "real-time view", or any custom HTML output for a Fuuz screen. Also use when a user asks how to embed Three.js, D3, Chart.js, ECharts, Cytoscape, Leaflet, Tabulator, Plotly, Mermaid, Transformers.js, FusionCharts, or any other web library in a Fuuz screen, OR asks which library to use for a manufacturing visualization (OEE gauge, Pareto, material genealogy, plant floor map, traceability tree, sankey, etc.). Covers the full pipeline — flow design, GraphQL queries, JSONata bundling, saved-script HTML building, percent-encoded data URIs, theming, timezone, smooth refresh, screen embedding, and library selection. Also covers WebGL and 3D scenes, Draco model compression, real-time updates over the platform data-change subscription bus, reading across multiple tenants, and getting an oversized page under the data-URI limit with gzip. Always trigger this skill for dashboard work, even if the user just says "make me a screen that shows X."
 ---
 
 # Fuuz HTML Dashboards
@@ -30,7 +30,7 @@ The cost: HTML is built once per refresh and shipped as a complete document. You
 **Don't use it for:**
 - Simple forms, tables, KPI cards — Fuuz native components are faster and integrate better
 - Things that need to react to in-screen events without a full refresh (use postmessage pattern instead)
-- Anything where the data volume per render exceeds a few hundred KB (data URIs have practical browser limits around 2MB)
+- Anything where the encoded page would reach **2,048 KB** — Chrome silently refuses to navigate a frame to a `data:` URI at or above that. This is a budget, not a wall: gzip + `DecompressionStream` took a 2,516 KB page down to ~1.2 MB. See `references/large-payloads.md` before giving up on a build.
 
 ## Related skills (load before building)
 
@@ -234,7 +234,7 @@ The catalog's headline picks for the most common needs:
 
 If client network access is restricted, two alternatives:
 
-1. **Inline the library code** into the saved script's TPL_HEAD. The polyfill pattern is the same — concatenate the library text into the HTML. Three.js r128 is ~600KB minified, which is fine for a data URI. D3 is ~270KB. This makes the dashboard work fully offline.
+1. **Inline the library code** into the saved script's TPL_HEAD. The polyfill pattern is the same — concatenate the library text into the HTML. Three.js r128 is ~600 KB minified, D3 ~270 KB. **Inline, do not load from a CDN at runtime** — both production 3D dashboards fetch their libraries at build time into a `lib/` directory and embed them. A runtime CDN adds a network round trip on every render and fails outright on a floor network without egress. If inlining puts you over budget, compress the page rather than reaching for a CDN — see `references/large-payloads.md`.
 
 2. **Self-host the library** on the same domain as Fuuz, and reference it relatively. Requires coordination with the platform admin but works for restricted environments.
 
@@ -266,6 +266,11 @@ Load these as needed during build:
 - `references/smooth-refresh.md` — `window.name` persistence pattern for iframe reloads
 - `references/postmessage-pattern.md` — Alternative architecture for true live updates (no iframe reload)
 - `references/dispatcher-pattern.md` — One flow, multiple action outputs — for screens with several views from the same dataset
+- `references/large-payloads.md` — The measured 2,048 KB limit and the gzip + `DecompressionStream` pattern that gets a page under it
+- `references/3d-and-webgl.md` — WebGL is verified working. three.js r128 setup, and Draco model compression at 150–180x
+- `references/live-subscriptions.md` — Real-time updates over the platform's own Socket.IO change bus, instead of polling
+- `references/cross-tenant.md` — Reading more than one tenant: per-tenant token exchange, and which render element makes it possible
+- `references/theming.md` — Following the viewer's ThemeMode, and reacting to a change without a reload
 - `templates/minimal-dashboard.html` — A simple working dashboard template you can adapt
 
 ## Quick sanity checklist (use every build)

@@ -181,7 +181,7 @@ return main($);
 
 If your dashboard needs them, add:
 
-- **Three.js / D3 / Chart.js** — inline via `<script src="https://cdnjs.cloudflare.com/...">` in the head. The Fuuz environment has internet access in the iframe context.
+- **Three.js / D3 / Chart.js** — fetch at BUILD time into a `lib/` directory and inline the text into the head. The iframe does have internet access, but a runtime CDN adds a round trip per render and fails on a floor network without egress. See `3d-and-webgl.md`.
 - **Persistent state across refresh** — see `references/smooth-refresh.md`
 - **Multiple data sources** — extend `buildDashboardState` to read additional query results from input
 - **Filter display** — render the active filters somewhere in the dashboard header for operator clarity

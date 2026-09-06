@@ -115,7 +115,7 @@ The webpage element isn't re-rendering when the flow output changes.
 
 1. **Move state-heavy content out of the URI.** Don't inline thousands of records in `STATE`. Aggregate server-side, send summary stats only.
 2. **Strip whitespace from the HTML template.** Use a minifier — backticked template literals preserve every space and newline. For Three.js with hundreds of `<script>` lines, this matters.
-3. **Use a separate static asset** for the JS, loaded via `<script src="...">` from a CDN. This keeps the URI small. (Three.js itself, D3, Chart.js — all available on cdnjs.)
+3. **Compress the page** — gzip it in the flow and inflate with `DecompressionStream` in the page. This is the measured fix and it beats every alternative; see `large-payloads.md`. Reaching for a runtime CDN to shrink the URI trades a size problem for a network-dependency problem.
 4. **Switch to the postmessage pattern** — see `references/postmessage-pattern.md`. Instead of regenerating the entire iframe on refresh, send delta updates via postMessage to a persistent iframe.
 
 ## Refresh causes a visible flash / glitch
